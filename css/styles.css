@@ -1,0 +1,38 @@
+#word-grid {
+  display: fixed;
+  width: 100%;
+  height: 100%;
+  font-size: 20px
+}
+
+.word {
+  display: inline-block;
+  width: 20%;
+  height: 130px;
+}
+
+.word .container {
+  display: flex;
+  width: 100%;
+  height: 100%;
+  margin: 5px;
+  align-items: center;
+}
+
+.word .container .text {
+
+  width: 100%;
+  text-align: center;
+}
+
+.blue .container {
+  background-color: blue;
+}
+
+.red .container {
+  background-color: red;
+}
+
+.gray .container {
+  background-color: gray;
+}
