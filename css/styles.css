@@ -36,3 +36,7 @@
 .gray .container {
   background-color: gray;
 }
+
+.black .container {
+  background-color: black;
+}
