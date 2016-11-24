@@ -3,7 +3,7 @@ var poison = randomIndex(25),
     red = [],
     index;
 
-while (blue.length < 10) {
+while (blue.length < 9) {
   index = randomIndex(25);
 
   if (index !== poison && blue.indexOf(index) === -1) {
@@ -11,7 +11,7 @@ while (blue.length < 10) {
   }
 }
 
-while (red.length < 9) {
+while (red.length < 8) {
   index = randomIndex(25);
 
   if (index !== poison && red.indexOf(index) === -1 && blue.indexOf(index) === -1) {
