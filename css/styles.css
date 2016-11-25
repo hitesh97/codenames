@@ -1,72 +1,34 @@
 body {
+    margin: 0;
+}
+
+#Board {
+  position: fixed;
+  width: 100%;
+  height: 100%;
   font-size: 32px;
   font-family: Arial, sans-serif;
   font-weight: bold;
 }
 
-#container {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  align-items: center;
-}
-
-#menu {
-  width: 100%;
-  text-align: center;
-}
-
-#menu .options {
-  margin-top: 30px;
-}
-
-#menu a {
-  display: block;
-}
-
-#word-grid {
-  display: fixed;
-  width: 100%;
-  height: 100%;
-  font-size: 40px;
-  text-transform: uppercase;
-}
-
-.word {
+.Name {
   display: inline-block;
   width: 20%;
-  height: 130px;
+  height: 20%;
 }
 
-.word .container {
-  display: flex;
-  width: 100%;
-  height: 100%;
-  margin: 5px;
-  align-items: center;
-}
-
-.word .container .text {
-
-  width: 100%;
-  text-align: center;
-}
-
-.blue .container {
+.blue {
   background-color: blue;
 }
 
-.red .container {
+.red {
   background-color: red;
 }
 
-.gray .container {
+.gray {
   background-color: gray;
 }
 
-.black .container {
+.black {
   background-color: black;
 }

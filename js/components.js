@@ -49,16 +49,12 @@ function SetupForm(gameObj) {
 }
 
 function Board(gameObj) {
-    // gameObj.state.names.map
     return (
         el('div', {
-            className: 'Board ' + gameObj.state.player
+            id: 'Board',
+            className: gameObj.state.player
         },
-            el(Name, {
-                value: 'echo',
-                color: 'red',
-                revealed: false
-            })
+            gameObj.state.names.map(el.bind(null, Name))
         )
     );
 }

@@ -1,6 +1,6 @@
 store.subscribe(render);
 
-// set initial state
+// dispatch action to set initial state
 store.dispatch({
     type: PLAYER_CHANGE,
     value: AGENTS
