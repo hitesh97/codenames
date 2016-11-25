@@ -14,30 +14,32 @@ function SetupForm(gameObj) {
             el('input', {
                 type: 'text',
                 name: 'seed',
-                placeholder: 'Enter seed to generate code',
+                placeholder: 'Enter seed to generate board',
                 onChange: gameObj.onSeedChange
             }),
             el('div', {
-                onChange: gameObj.onBoardChange
+                onChange: gameObj.onPlayerChange
             },
                 el('input', {
-                    id: 'form-radio-names',
+                    id: 'form-radio-agents',
                     type: 'radio',
-                    name: 'board',
-                    value: NAMES
+                    name: 'player',
+                    value: AGENTS,
+                    checked: gameObj.state.player === AGENTS
                 }),
                 el('label', {
-                    htmlFor: 'form-radio-names'
-                }, 'Names'),
+                    htmlFor: 'form-radio-agents'
+                }, 'Agents'),
                 el('input', {
-                    id: 'form-radio-code',
+                    id: 'form-radio-spymaster',
                     type: 'radio',
-                    name: 'board',
-                    value: CODE
+                    name: 'player',
+                    value: SPYMASTER,
+                    checked: gameObj.state.player === SPYMASTER
                 }),
                 el('label', {
-                    htmlFor: 'form-radio-code'
-                }, 'Code')
+                    htmlFor: 'form-radio-spymaster'
+                }, 'Spymaster')
             ),
             el('button', {
                 type: 'submit'
@@ -50,7 +52,7 @@ function Board(gameObj) {
     // gameObj.state.names.map
     return (
         el('div', {
-            className: 'Board'
+            className: 'Board ' + gameObj.state.player
         },
             el(Name, {
                 value: 'echo',

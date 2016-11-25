@@ -7,9 +7,9 @@ var reducer = function(state, action) {
                 return Object.assign({}, state, {
                     seed: action.value
                 });
-            case BOARD_CHANGE:
+            case PLAYER_CHANGE:
                 return Object.assign({}, state, {
-                    board: action.value
+                    player: action.value
                 });
             case SETUP_FORM_SUBMIT:
                 return Object.assign({}, state, {

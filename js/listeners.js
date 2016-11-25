@@ -5,16 +5,16 @@ function onSeedChange(e) {
     });
 }
 
-function onBoardChange(e) {
+function onPlayerChange(e) {
     store.dispatch({
-        type: BOARD_CHANGE,
+        type: PLAYER_CHANGE,
         value: e.target.value
     });
 }
 
 function onSetupFormSubmit(e) {
     e.preventDefault();
-    
+
     store.dispatch({
         type: SETUP_FORM_SUBMIT
     });
