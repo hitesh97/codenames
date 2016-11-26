@@ -1,7 +1,7 @@
 var el = React.createElement;
 
 function CodeNames(gameObj) {
-    return gameObj.state.hasStarted
+    return gameObj.state.names.length
         ? el(Board, gameObj)
         : el(Setup, gameObj);
 }
@@ -85,7 +85,7 @@ function Board(gameObj) {
             gameObj.state.names.map(function(name) {
                 return el(Name, Object.assign({}, name, {
                     key: name.value,
-                    onClick: gameObj.onNameClick.bind(null, name.value),
+                    onClick: gameObj.onNameClick,
                     player: gameObj.state.player
                 }));
             })
@@ -97,7 +97,7 @@ function Name(name) {
     return (
         el('div', {
             className: _getNameClassName(name),
-            onClick: name.onClick
+            onClick: name.onClick(name.value)
         },
             el('div', {
                 className: 'text'

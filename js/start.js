@@ -2,7 +2,7 @@ var store = Redux.createStore(codenames);
 
 store.subscribe(render);
 
-// dispatch action to set initial state
+// dispatch action to set initial state and trigger inital render
 store.dispatch({
     type: PLAYER_CHANGE,
     value: AGENTS

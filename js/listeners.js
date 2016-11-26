@@ -16,13 +16,16 @@ function onSetupFormSubmit(e) {
     e.preventDefault();
 
     store.dispatch({
-        type: SETUP_FORM_SUBMIT
+        type: SETUP_FORM_SUBMIT,
+        seed: store.getState().seed
     });
 }
 
-function onNameClick(name, e) {
-    store.dispatch({
-        type: REVEAL_NAME,
-        value: name
-    });
+function onNameClick(name) {
+    return function onClick() {
+        store.dispatch({
+            type: REVEAL_NAME,
+            value: name
+        });
+    }
 }

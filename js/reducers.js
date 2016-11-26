@@ -1,39 +1,21 @@
-function codenames(state, action) {
-    state = state || {};
-
-    switch (action.type) {
-        case SEED_CHANGE:
-            return Object.assign({}, state, {
-                seed: action.value
-            });
-        case PLAYER_CHANGE:
-            return Object.assign({}, state, {
-                player: action.value
-            });
-        case SETUP_FORM_SUBMIT:
-            if (!state.seed) {
-                return state;
-            }
-            
-            Math.seedrandom(state.seed);
-
-            return Object.assign({}, state, {
-                names: names(state.names, action),
-                hasStarted: true
-            });
-        case REVEAL_NAME:
-            return Object.assign({}, state, {
-                names: names(state.names, action)
-            });
-        default:
-            return state;
-    }
-}
+var codenames = Redux.combineReducers({
+    seed: seed,
+    player: player,
+    names: names
+});
 
 function names(state, action) {
-    state = state || _getInitialNames();
+    state = state || [];
 
     switch (action.type) {
+        case SETUP_FORM_SUBMIT:
+            if (!action.seed) {
+                return state;
+            }
+
+            Math.seedrandom(action.seed);
+
+            return _getInitialNames();
         case REVEAL_NAME:
             return state.map(function(n) {
                 return name(n, action);
@@ -55,6 +37,28 @@ function name(state, action) {
             return Object.assign({}, state, {
                 isRevealed: true
             });
+        default:
+            return state;
+    }
+}
+
+function seed(state, action) {
+    state = state || '';
+
+    switch (action.type) {
+        case SEED_CHANGE:
+            return action.value;
+        default:
+            return state;
+    }
+}
+
+function player(state, action) {
+    state = state || '';
+
+    switch (action.type) {
+        case PLAYER_CHANGE:
+            return action.value;
         default:
             return state;
     }
