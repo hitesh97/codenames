@@ -26,49 +26,52 @@ function SetupForm(gameObj) {
             onSubmit: gameObj.onSetupFormSubmit
         },
             el('input', {
-                id: 'SetupForm-input-text',
+                id: 'SetupForm-seed',
                 type: 'text',
                 name: 'seed',
                 placeholder: 'Enter seed to generate board',
                 onChange: gameObj.onSeedChange
             }),
             el('ul', {
-                id: 'SetupForm-player',
-                onChange: gameObj.onPlayerChange
+                id: 'SetupForm-player'
             },
-                el('li', {
-                    className: 'SetupForm-input-radio'
-                },
-                    el('input', {
-                        id: 'form-radio-agents',
-                        type: 'radio',
+                [AGENTS, SPYMASTER].map(function(player) {
+                    return el(SetupFormInputRadio, {
+                        key: player,
                         name: 'player',
-                        value: AGENTS,
-                        checked: gameObj.state.player === AGENTS
-                    }),
-                    el('label', {
-                        htmlFor: 'form-radio-agents'
-                    }, 'Agents')
-                ),
-                el('li', {
-                    className: 'SetupForm-input-radio'
-                },
-                    el('input', {
-                        id: 'form-radio-spymaster',
-                        type: 'radio',
-                        name: 'player',
-                        value: SPYMASTER,
-                        checked: gameObj.state.player === SPYMASTER
-                    }),
-                    el('label', {
-                        htmlFor: 'form-radio-spymaster'
-                    }, 'Spymaster')
-                )
+                        value: player,
+                        current: gameObj.state.player,
+                        onChange: gameObj.onPlayerChange
+                    });
+                })
             ),
             el('button', {
                 id: 'SetupForm-button-submit',
                 type: 'submit'
             }, 'Start')
+        )
+    );
+}
+
+
+function SetupFormInputRadio(radio) {
+    var identifier = 'form-radio-' + radio.value;
+
+    return (
+        el('li', {
+            className: 'SetupFormInputRadio'
+        },
+            el('input', {
+                id: identifier,
+                type: 'radio',
+                name: radio.name,
+                value: radio.value,
+                checked: radio.current === radio.value,
+                onChange: radio.onChange
+            }),
+            el('label', {
+                htmlFor: identifier
+            }, radio.value[0].toUpperCase() + radio.value.slice(1))
         )
     );
 }

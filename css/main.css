@@ -10,7 +10,7 @@ body {
     width: 300px;
 }
 
-#SetupForm-input-text {
+#SetupForm-seed {
     box-sizing: border-box;
     width: 100%;
     padding: .2em;
