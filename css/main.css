@@ -2,6 +2,32 @@ body {
     margin: 0;
 }
 
+#Setup {
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+#SetupForm-input-text {
+    box-sizing: border-box;
+    width: 100%;
+    padding: .2em;
+    font-size: 1.2em;
+}
+
+#SetupForm-player {
+    margin-top: 1em;
+}
+
+#SetupForm-player *::nth-child(3) {
+    padding-left: 1em;
+}
+
+#SetupForm-button-submit {
+    margin-top: 1em;    
+}
+
 #Board {
   position: fixed;
   width: 100%;

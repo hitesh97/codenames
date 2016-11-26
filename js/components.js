@@ -3,21 +3,37 @@ var el = React.createElement;
 function CodeNames(gameObj) {
     return gameObj.state.hasStarted
         ? el(Board, gameObj)
-        : el(SetupForm, gameObj);
+        : el(Setup, gameObj);
+}
+
+function Setup(gameObj) {
+    return (
+        el('div', {
+            id: 'Setup'
+        },
+            el('h1', {
+                id: 'Setup-title'
+            }, 'Codenames'),
+            el(SetupForm, gameObj)
+        )
+    );
 }
 
 function SetupForm(gameObj) {
     return (
         el('form', {
+            id: 'SetupForm',
             onSubmit: gameObj.onSetupFormSubmit
         },
             el('input', {
+                id: 'SetupForm-input-text',
                 type: 'text',
                 name: 'seed',
                 placeholder: 'Enter seed to generate board',
                 onChange: gameObj.onSeedChange
             }),
             el('div', {
+                id: 'SetupForm-player',
                 onChange: gameObj.onPlayerChange
             },
                 el('input', {
@@ -42,6 +58,7 @@ function SetupForm(gameObj) {
                 }, 'Spymaster')
             ),
             el('button', {
+                id: 'SetupForm-button-submit',
                 type: 'submit'
             }, 'Start')
         )
