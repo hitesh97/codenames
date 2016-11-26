@@ -19,6 +19,16 @@ function reducer(state, action) {
                       hasStarted: true
                   })
                 : state;
+        case REVEAL_NAME:
+            return Object.assign({}, state, {
+                names: state.names.map(function(n) {
+                    return action.value === n.value
+                        ? Object.assign({}, n, {
+                              isRevealed: true
+                          })
+                        : n;
+                })
+            });
         default:
             return state;
     }
@@ -33,7 +43,6 @@ function getNames(seed) {
 
     return shuffledNames.map(function(n, i) {
         return {
-            key: i,
             value: n,
             color: shuffledColors[i]
         };

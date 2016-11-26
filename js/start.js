@@ -12,7 +12,8 @@ function render() {
             state: store.getState(),
             onSeedChange: onSeedChange,
             onPlayerChange: onPlayerChange,
-            onSetupFormSubmit: onSetupFormSubmit
+            onSetupFormSubmit: onSetupFormSubmit,
+            onNameClick: onNameClick
         }),
         document.getElementById('codenames')
     );

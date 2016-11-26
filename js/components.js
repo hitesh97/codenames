@@ -54,18 +54,19 @@ function Board(gameObj) {
             id: 'Board',
             className: gameObj.state.player
         },
-            gameObj.state.names.map(function(name) {
-                return el(Name(gameObj.state.player), name);
+            gameObj.state.names.map(function(name, i) {
+                return el(Name(gameObj), Object.assign({}, name, {key:i}));
             })
         )
     );
 }
 
-function Name(player) {
+function Name(gameObj) {
     return function(name) {
         return (
             el('div', {
-                className: _getNameClassName(player, name)
+                className: _getNameClassName(gameObj.state.player, name),
+                onClick: gameObj.onNameClick.bind(null, name.value)
             },
                 el('div', {
                     className: 'text'

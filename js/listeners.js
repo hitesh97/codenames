@@ -19,3 +19,10 @@ function onSetupFormSubmit(e) {
         type: SETUP_FORM_SUBMIT
     });
 }
+
+function onNameClick(name, e) {
+    store.dispatch({
+        type: REVEAL_NAME,
+        value: name
+    });
+}
