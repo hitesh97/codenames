@@ -14,7 +14,7 @@ function codenames(state, action) {
             if (!state.seed) {
                 return state;
             }
-
+            
             Math.seedrandom(state.seed);
 
             return Object.assign({}, state, {

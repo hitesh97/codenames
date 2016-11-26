@@ -18,7 +18,8 @@ body {
 }
 
 #SetupForm-player {
-    margin-top: 1em;
+    padding-left: 0;
+    list-style: none;
 }
 
 .SetupForm-input-radio {
@@ -56,6 +57,8 @@ body {
     height: 100%;
     align-items: center;
     justify-content: center;
+    -webkit-touch-callout: none;
+    -webkit-user-select: none;
 }
 
 .blue {

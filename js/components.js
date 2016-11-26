@@ -32,11 +32,11 @@ function SetupForm(gameObj) {
                 placeholder: 'Enter seed to generate board',
                 onChange: gameObj.onSeedChange
             }),
-            el('div', {
+            el('ul', {
                 id: 'SetupForm-player',
                 onChange: gameObj.onPlayerChange
             },
-                el('div', {
+                el('li', {
                     className: 'SetupForm-input-radio'
                 },
                     el('input', {
@@ -50,7 +50,7 @@ function SetupForm(gameObj) {
                         htmlFor: 'form-radio-agents'
                     }, 'Agents')
                 ),
-                el('div', {
+                el('li', {
                     className: 'SetupForm-input-radio'
                 },
                     el('input', {
@@ -79,29 +79,31 @@ function Board(gameObj) {
             id: 'Board',
             className: gameObj.state.player
         },
-            gameObj.state.names.map(function(name, i) {
-                return el(Name(gameObj), Object.assign({}, name, {key:i}));
+            gameObj.state.names.map(function(name) {
+                return el(Name, Object.assign({}, name, {
+                    key: name.value,
+                    onClick: gameObj.onNameClick.bind(null, name.value),
+                    player: gameObj.state.player
+                }));
             })
         )
     );
 }
 
-function Name(gameObj) {
-    return function(name) {
-        return (
+function Name(name) {
+    return (
+        el('div', {
+            className: _getNameClassName(name),
+            onClick: name.onClick
+        },
             el('div', {
-                className: _getNameClassName(gameObj.state.player, name),
-                onClick: gameObj.onNameClick.bind(null, name.value)
-            },
-                el('div', {
-                    className: 'text'
-                }, name.value)
-            )
-        );
-    };
+                className: 'text'
+            }, name.value)
+        )
+    );
 }
 
 // utils
-function _getNameClassName(player, name) {
-    return 'Name ' + (player === SPYMASTER || name.isRevealed ? name.color : '');
+function _getNameClassName(name) {
+    return 'Name ' + (name.player === SPYMASTER || name.isRevealed ? name.color : '');
 }
