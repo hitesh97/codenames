@@ -36,26 +36,34 @@ function SetupForm(gameObj) {
                 id: 'SetupForm-player',
                 onChange: gameObj.onPlayerChange
             },
-                el('input', {
-                    id: 'form-radio-agents',
-                    type: 'radio',
-                    name: 'player',
-                    value: AGENTS,
-                    checked: gameObj.state.player === AGENTS
-                }),
-                el('label', {
-                    htmlFor: 'form-radio-agents'
-                }, 'Agents'),
-                el('input', {
-                    id: 'form-radio-spymaster',
-                    type: 'radio',
-                    name: 'player',
-                    value: SPYMASTER,
-                    checked: gameObj.state.player === SPYMASTER
-                }),
-                el('label', {
-                    htmlFor: 'form-radio-spymaster'
-                }, 'Spymaster')
+                el('div', {
+                    className: 'SetupForm-input-radio'
+                },
+                    el('input', {
+                        id: 'form-radio-agents',
+                        type: 'radio',
+                        name: 'player',
+                        value: AGENTS,
+                        checked: gameObj.state.player === AGENTS
+                    }),
+                    el('label', {
+                        htmlFor: 'form-radio-agents'
+                    }, 'Agents')
+                ),
+                el('div', {
+                    className: 'SetupForm-input-radio'
+                },
+                    el('input', {
+                        id: 'form-radio-spymaster',
+                        type: 'radio',
+                        name: 'player',
+                        value: SPYMASTER,
+                        checked: gameObj.state.player === SPYMASTER
+                    }),
+                    el('label', {
+                        htmlFor: 'form-radio-spymaster'
+                    }, 'Spymaster')
+                )
             ),
             el('button', {
                 id: 'SetupForm-button-submit',

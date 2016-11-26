@@ -1,5 +1,6 @@
 body {
     margin: 0;
+    font-family: Arial, sans-serif;
 }
 
 #Setup {
@@ -20,21 +21,27 @@ body {
     margin-top: 1em;
 }
 
-#SetupForm-player *::nth-child(3) {
-    padding-left: 1em;
+.SetupForm-input-radio {
+    margin-top: .5em;
 }
 
 #SetupForm-button-submit {
-    margin-top: 1em;    
+    margin-top: 2em;
+    padding: 5px 10px;
 }
 
 #Board {
   position: fixed;
   width: 100%;
   height: 100%;
-  font-size: 32px;
-  font-family: Arial, sans-serif;
   font-weight: bold;
+  font-size: .75em;
+}
+
+@media (min-width: 720px) {
+    #Board {
+        font-size: 2em;
+    }
 }
 
 .Name {
