@@ -1,6 +1,7 @@
-var store = Redux.createStore(reducer);
+var store = Redux.createStore(codenames);
 
-function reducer(state, action) {
+// reducers
+function codenames(state, action) {
     state = state || {};
 
     switch (action.type) {
@@ -13,21 +14,47 @@ function reducer(state, action) {
                 player: action.value
             });
         case SETUP_FORM_SUBMIT:
-            return !!state.seed
-                ? Object.assign({}, state, {
-                      names: getNames(state.seed),
-                      hasStarted: true
-                  })
-                : state;
+            if (!state.seed) {
+                return state;
+            }
+
+            return Object.assign({}, state, {
+                names: getNames(state.seed),
+                hasStarted: true
+            });
         case REVEAL_NAME:
             return Object.assign({}, state, {
-                names: state.names.map(function(n) {
-                    return action.value === n.value
-                        ? Object.assign({}, n, {
-                              isRevealed: true
-                          })
-                        : n;
-                })
+                names: names(state.names, action)
+            });
+        default:
+            return state;
+    }
+}
+
+function names(state, action) {
+    state = state || [];
+
+    switch (action.type) {
+        case REVEAL_NAME:
+            return state.map(function(n) {
+                return name(n, action);
+            });
+        default:
+            return state;
+    }
+}
+
+function name(state, action) {
+    state = state || {};
+
+    switch (action.type) {
+        case REVEAL_NAME:
+            if (action.value !== state.value) {
+                return state;
+            }
+
+            return Object.assign({}, state, {
+                isRevealed: true
             });
         default:
             return state;
@@ -44,7 +71,8 @@ function getNames(seed) {
     return shuffledNames.map(function(n, i) {
         return {
             value: n,
-            color: shuffledColors[i]
+            color: shuffledColors[i],
+            isRevealed: false
         };
     })
 }
