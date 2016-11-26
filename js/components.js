@@ -54,13 +54,28 @@ function Board(gameObj) {
             id: 'Board',
             className: gameObj.state.player
         },
-            gameObj.state.names.map(el.bind(null, Name))
+            gameObj.state.names.map(function(name) {
+                return el(Name(gameObj.state.player), name);
+            })
         )
     );
 }
 
-function Name(name) {
-    return el('div', {
-        className: 'Name ' + name.color
-    }, name.value);
+function Name(player) {
+    return function(name) {
+        return (
+            el('div', {
+                className: _getNameClassName(player, name)
+            },
+                el('div', {
+                    className: 'text'
+                }, name.value)
+            )
+        );
+    };
+}
+
+// utils
+function _getNameClassName(player, name) {
+    return 'Name ' + (player === SPYMASTER || name.isRevealed ? name.color : '');
 }

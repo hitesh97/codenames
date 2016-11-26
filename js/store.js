@@ -33,6 +33,7 @@ function getNames(seed) {
 
     return shuffledNames.map(function(n, i) {
         return {
+            key: i,
             value: n,
             color: shuffledColors[i]
         };
