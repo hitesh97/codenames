@@ -1,0 +1,69 @@
+body {
+    margin: 0;
+}
+
+#Setup {
+    margin-top: 5em;
+    margin-left: auto;
+    margin-right: auto;
+    width: 300px;
+}
+
+#SetupForm-input-text {
+    box-sizing: border-box;
+    width: 100%;
+    padding: .2em;
+    font-size: 1.2em;
+}
+
+#SetupForm-player {
+    margin-top: 1em;
+}
+
+#SetupForm-player *::nth-child(3) {
+    padding-left: 1em;
+}
+
+#SetupForm-button-submit {
+    margin-top: 1em;    
+}
+
+#Board {
+  position: fixed;
+  width: 100%;
+  height: 100%;
+  font-size: 32px;
+  font-family: Arial, sans-serif;
+  font-weight: bold;
+}
+
+.Name {
+  display: inline-block;
+  width: 20%;
+  height: 20%;
+}
+
+.Name .text {
+    display: flex;
+    width: 100%;
+    height: 100%;
+    align-items: center;
+    justify-content: center;
+}
+
+.blue {
+  background-color: #81dafc;
+}
+
+.red {
+  background-color: #ff5656;
+}
+
+.gray {
+  background-color: #c1c1c1;
+}
+
+.black {
+  background-color: #1c1c1c;
+  color: white;
+}

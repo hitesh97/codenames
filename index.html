@@ -1,18 +1,22 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <link href="css/styles.css" rel="stylesheet" type="text/css">
+    <link href="css/main.css" rel="stylesheet" type="text/css">
     <title>Codenames</title>
   </head>
   <body>
-    <div id="container">
-      <div id="menu">
-        <div>Codenames</div>
-        <div class="options">
-          <a href="/codenames/words">Word Grid</a>
-          <a href="/codenames/codes">Color Codes</a>
-        </div>
-      </div>
-    </div>
+      <div id="codenames"></div>
+      <script src="js/vendor/Object.assign.polyfill.js" type="text/javascript"></script>
+      <script src="js/vendor/knuth-shuffle.js" type="text/javascript"></script>
+      <script src="js/vendor/react.js" type="text/javascript"></script>
+      <script src="js/vendor/react-dom.js" type="text/javascript"></script>
+      <script src="js/vendor/redux.js" type="text/javascript"></script>
+      <script src="js/vendor/seedrandom.js" type="text/javascript"></script>
+
+      <script src="js/constants.js" type="text/javascript"></script>
+      <script src="js/components.js" type="text/javascript"></script>
+      <script src="js/listeners.js" type="text/javascript"></script>
+      <script src="js/store.js" type="text/javascript"></script>
+      <script src="js/start.js" type="text/javascript"></script>
   </body>
 </html>
