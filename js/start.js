@@ -1,3 +1,5 @@
+var store = Redux.createStore(codenames);
+
 store.subscribe(render);
 
 // dispatch action to set initial state

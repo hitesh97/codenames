@@ -1,6 +1,3 @@
-var store = Redux.createStore(codenames);
-
-// reducers
 function codenames(state, action) {
     state = state || {};
 
@@ -18,8 +15,10 @@ function codenames(state, action) {
                 return state;
             }
 
+            Math.seedrandom(state.seed);
+
             return Object.assign({}, state, {
-                names: getNames(state.seed),
+                names: names(state.names, action),
                 hasStarted: true
             });
         case REVEAL_NAME:
@@ -32,7 +31,7 @@ function codenames(state, action) {
 }
 
 function names(state, action) {
-    state = state || [];
+    state = state || _getInitialNames();
 
     switch (action.type) {
         case REVEAL_NAME:
@@ -62,9 +61,7 @@ function name(state, action) {
 }
 
 // utils
-function getNames(seed) {
-    Math.seedrandom(seed);
-
+function _getInitialNames() {
     var shuffledNames = knuthShuffle(NAMES.slice(0)).slice(0, 25),
         shuffledColors = knuthShuffle(COLORS.slice(0));
 
