@@ -26,49 +26,52 @@ function SetupForm(gameObj) {
             onSubmit: gameObj.onSetupFormSubmit
         },
             el('input', {
-                id: 'SetupForm-input-text',
+                id: 'SetupForm-seed',
                 type: 'text',
                 name: 'seed',
                 placeholder: 'Enter seed to generate board',
                 onChange: gameObj.onSeedChange
             }),
-            el('div', {
-                id: 'SetupForm-player',
-                onChange: gameObj.onPlayerChange
+            el('ul', {
+                id: 'SetupForm-player'
             },
-                el('div', {
-                    className: 'SetupForm-input-radio'
-                },
-                    el('input', {
-                        id: 'form-radio-agents',
-                        type: 'radio',
+                [AGENTS, SPYMASTER].map(function(player) {
+                    return el(SetupFormInputRadio, {
+                        key: player,
                         name: 'player',
-                        value: AGENTS,
-                        checked: gameObj.state.player === AGENTS
-                    }),
-                    el('label', {
-                        htmlFor: 'form-radio-agents'
-                    }, 'Agents')
-                ),
-                el('div', {
-                    className: 'SetupForm-input-radio'
-                },
-                    el('input', {
-                        id: 'form-radio-spymaster',
-                        type: 'radio',
-                        name: 'player',
-                        value: SPYMASTER,
-                        checked: gameObj.state.player === SPYMASTER
-                    }),
-                    el('label', {
-                        htmlFor: 'form-radio-spymaster'
-                    }, 'Spymaster')
-                )
+                        value: player,
+                        current: gameObj.state.player,
+                        onChange: gameObj.onPlayerChange
+                    });
+                })
             ),
             el('button', {
                 id: 'SetupForm-button-submit',
                 type: 'submit'
             }, 'Start')
+        )
+    );
+}
+
+
+function SetupFormInputRadio(radio) {
+    var identifier = 'form-radio-' + radio.value;
+
+    return (
+        el('li', {
+            className: 'SetupFormInputRadio'
+        },
+            el('input', {
+                id: identifier,
+                type: 'radio',
+                name: radio.name,
+                value: radio.value,
+                checked: radio.current === radio.value,
+                onChange: radio.onChange
+            }),
+            el('label', {
+                htmlFor: identifier
+            }, radio.value[0].toUpperCase() + radio.value.slice(1))
         )
     );
 }
@@ -79,29 +82,31 @@ function Board(gameObj) {
             id: 'Board',
             className: gameObj.state.player
         },
-            gameObj.state.names.map(function(name, i) {
-                return el(Name(gameObj), Object.assign({}, name, {key:i}));
+            gameObj.state.names.map(function(name) {
+                return el(Name, Object.assign({}, name, {
+                    key: name.value,
+                    onClick: gameObj.onNameClick.bind(null, name.value),
+                    player: gameObj.state.player
+                }));
             })
         )
     );
 }
 
-function Name(gameObj) {
-    return function(name) {
-        return (
+function Name(name) {
+    return (
+        el('div', {
+            className: _getNameClassName(name),
+            onClick: name.onClick
+        },
             el('div', {
-                className: _getNameClassName(gameObj.state.player, name),
-                onClick: gameObj.onNameClick.bind(null, name.value)
-            },
-                el('div', {
-                    className: 'text'
-                }, name.value)
-            )
-        );
-    };
+                className: 'text'
+            }, name.value)
+        )
+    );
 }
 
 // utils
-function _getNameClassName(player, name) {
-    return 'Name ' + (player === SPYMASTER || name.isRevealed ? name.color : '');
+function _getNameClassName(name) {
+    return 'Name ' + (name.player === SPYMASTER || name.isRevealed ? name.color : '');
 }
