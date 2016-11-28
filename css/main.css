@@ -33,10 +33,11 @@ body {
 
 #Board {
   position: fixed;
+  font-weight: bold;
   width: 100%;
   height: 100%;
-  font-weight: bold;
   font-size: .75em;
+  background-color: lightgray;
 }
 
 @media (min-width: 720px) {
@@ -46,19 +47,70 @@ body {
 }
 
 .Name {
-  display: inline-block;
-  width: 20%;
-  height: 20%;
-}
-
-.Name .text {
+    position: absolute;
     display: flex;
-    width: 100%;
-    height: 100%;
+    flex-direction: column;
+    width: 19%;
+    height: 19%;
     align-items: center;
     justify-content: center;
+    border-radius: .25em;
     -webkit-touch-callout: none;
     -webkit-user-select: none;
+    background-color: white;
+}
+
+/* columns */
+.Name:nth-child(5n + 1) {
+    left: .5%;
+}
+
+.Name:nth-child(5n + 2) {
+    left: 20.5%;
+}
+
+.Name:nth-child(5n + 3) {
+    left: 40.5%;
+}
+
+.Name:nth-child(5n + 4) {
+    left: 60.5%;
+}
+
+.Name:nth-child(5n + 5) {
+    left: 80.5%;
+}
+
+/* rows */
+.Name:nth-child(-n + 5) {
+    top: .5%;
+}
+
+.Name:nth-child(n+6):nth-child(-n+10) {
+    top: 20.5%;
+}
+
+.Name:nth-child(n+11):nth-child(-n+15) {
+    top: 40.5%;
+}
+
+.Name:nth-child(n+16):nth-child(-n+20) {
+    top: 60.5%;
+}
+
+.Name:nth-child(n+21) {
+    top: 80.5%;
+}
+
+.secondary {
+    font-size: .5em;
+    transform-origin: center center;
+    transform: rotateZ(180deg);
+    color: lightgray;
+}
+
+.spymaster .secondary {
+    display: none;
 }
 
 .blue {

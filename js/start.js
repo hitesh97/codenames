@@ -1,5 +1,6 @@
 var store = Redux.createStore(codenames);
 
+// rander function is called every time action is dispatched to the store
 store.subscribe(render);
 
 // dispatch action to set initial state and trigger inital render
