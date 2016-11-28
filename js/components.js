@@ -96,17 +96,18 @@ function Board(gameObj) {
 function Name(name) {
     return (
         el('div', {
-            className: _getNameClassName(name),
+            className: _getTextClassName(name),
             onClick: name.onClick(name.value)
         },
             el('div', {
-                className: 'text'
-            }, name.value)
+                className: 'secondary'
+            }, name.value),
+            el('div', {}, name.value)    
         )
     );
 }
 
 // utils
-function _getNameClassName(name) {
+function _getTextClassName(name) {
     return 'Name ' + (name.player === SPYMASTER || name.isRevealed ? name.color : '');
 }
