@@ -1,5 +1,10 @@
-body {
-    margin: 0;
+#codenames {
+    position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: #313131;
     font-family: Arial, sans-serif;
 }
 
@@ -32,8 +37,7 @@ body {
 }
 
 #Board {
-  position: fixed;
-  font-weight: bold;
+  font-weight: 600;
   width: 100%;
   height: 100%;
   font-size: .75em;
