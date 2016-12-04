@@ -1,0 +1,37 @@
+<div id="codenames">
+    {{#if names.length }}
+        <Board player={{ player }} />
+    {{else}}
+        <Setup player={{ player }} />
+    {{/if}}
+</div>
+
+
+<script>
+
+import Board from './Board.html';
+import Setup from './Setup.html';
+
+export default {
+    components: {
+        Board,
+        Setup
+    }
+}
+
+</script>
+
+
+<style>
+
+#codenames {
+    position: fixed;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    color: #313131;
+    font-family: Arial, sans-serif;
+}
+
+</style>

@@ -1,0 +1,72 @@
+<form id="SetupForm" on:submit="onSetupFormSubmit(event)">
+    <input id="SetupForm-seed" type="text" name="seed" placeholder="Enter seed to generate board" on:change="onSeedChange(this.value)">
+    <ul id="SetupForm-player">
+        {{#each players as playerOption}}
+            <SetupFormInputRadio value="{{ playerOption }}" current="{{ player }}" name="player" />
+        {{/each}}
+    </ul>
+    <button id="SetupForm-button-submit" type="submit" >Start</button>
+</form>
+
+
+<script>
+
+import SetupFormInputRadio from './SetupFormInputRadio.html';
+import constants from '../constants.json';
+
+
+export default {
+    data() {
+        return {
+            players: Object.keys(constants.players)
+                .reduce((acc, k) => {
+                    acc.push(constants.players[k]);
+                    return acc;
+                }, [])
+        }
+    },
+    components: {
+        SetupFormInputRadio
+    },
+    methods: {
+
+        onSetupFormSubmit(e) {
+            e.preventDefault();
+
+            // store.dispatch({
+            //     type: SETUP_FORM_SUBMIT,
+            //     seed: store.getState().seed
+            // });
+        },
+        onSeedChange(e) {
+            // store.dispatch({
+            //     type: SEED_CHANGE,
+            //     value: e.target.value
+            // });
+        }
+    }
+}
+
+</script>
+
+
+<style>
+
+#SetupForm-seed {
+    box-sizing: border-box;
+    width: 100%;
+    padding: .2em;
+    font-size: 1.2em;
+}
+
+#SetupForm-player {
+    padding-left: 0;
+    list-style: none;
+}
+
+#SetupForm-button-submit {
+    margin-top: 2em;
+    padding: 5px 10px;
+}
+
+</style>

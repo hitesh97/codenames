@@ -1,0 +1,26 @@
+{
+  "name": "codenames",
+  "version": "1.0.0",
+  "description": "web version of tabletop word game",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/lukechinworth/codenames.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/lukechinworth/codenames/issues"
+  },
+  "homepage": "https://github.com/lukechinworth/codenames#readme",
+  "devDependencies": {
+    "knuth-shuffle": "^1.0.1",
+    "redux": "^3.6.0",
+    "rollup-plugin-json": "^2.0.2",
+    "rollup-plugin-svelte": "^1.0.0",
+    "seedrandom": "^2.4.2"
+  }
+}

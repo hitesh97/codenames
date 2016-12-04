@@ -1,4 +1,7 @@
-var codenames = Redux.combineReducers({
+import combineReducers from 'redux';
+
+
+export default combineReducers({
     seed: seed,
     player: player,
     names: names

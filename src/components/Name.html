@@ -1,54 +1,31 @@
-#codenames {
-    position: fixed;
-    left: 0;
-    top: 0;
-    right: 0;
-    bottom: 0;
-    color: #313131;
-    font-family: Arial, sans-serif;
-}
+<div class="{{ className }}" on:click="onNameClick(value)">
+    <div class="secondary">{{ value }}</div>
+    <div>{{ value }}</div>
+</div>
 
-#Setup {
-    margin-top: 5em;
-    margin-left: auto;
-    margin-right: auto;
-    width: 300px;
-}
+<script>
 
-#SetupForm-seed {
-    box-sizing: border-box;
-    width: 100%;
-    padding: .2em;
-    font-size: 1.2em;
-}
-
-#SetupForm-player {
-    padding-left: 0;
-    list-style: none;
-}
-
-.SetupFormInputRadio {
-    margin-top: .5em;
-}
-
-#SetupForm-button-submit {
-    margin-top: 2em;
-    padding: 5px 10px;
-}
-
-#Board {
-  font-weight: 600;
-  width: 100%;
-  height: 100%;
-  font-size: .75em;
-  background-color: lightgray;
-}
-
-@media (min-width: 720px) {
-    #Board {
-        font-size: 2em;
+export default {
+    computed: {
+        className: (player, isRevealed) => {
+            return 'Name ' + (name.player === SPYMASTER || name.isRevealed ? name.color : '');
+        }
+    },
+    methods: {
+        onNameClick(name) {
+            return function onClick() {
+                store.dispatch({
+                    type: REVEAL_NAME,
+                    value: name
+                });
+            }
+        }
     }
 }
+
+</script>
+
+<style>
 
 .Name {
     position: absolute;
@@ -133,3 +110,5 @@
   background-color: #1c1c1c;
   color: white;
 }
+
+</style>
