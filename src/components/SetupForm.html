@@ -1,5 +1,5 @@
 <form id="SetupForm" on:submit="onSetupFormSubmit(event)">
-    <input id="SetupForm-seed" type="text" name="seed" placeholder="Enter seed to generate board" on:change="onSeedChange(this.value)">
+    <input id="SetupForm-seed" type="text" name="seed" placeholder="Enter seed to generate board">
     <ul id="SetupForm-player">
         {{#each players as playerOption}}
             <SetupFormInputRadio value="{{ playerOption }}" current="{{ player }}" name="player" />
@@ -12,17 +12,14 @@
 <script>
 
 import SetupFormInputRadio from './SetupFormInputRadio.html';
-import constants from '../constants.json';
+import constants from 'codenames-constants';
 
 
 export default {
     data() {
         return {
             players: Object.keys(constants.players)
-                .reduce((acc, k) => {
-                    acc.push(constants.players[k]);
-                    return acc;
-                }, [])
+                .map(k => constants.players[k])
         }
     },
     components: {
@@ -36,12 +33,6 @@ export default {
             // store.dispatch({
             //     type: SETUP_FORM_SUBMIT,
             //     seed: store.getState().seed
-            // });
-        },
-        onSeedChange(e) {
-            // store.dispatch({
-            //     type: SEED_CHANGE,
-            //     value: e.target.value
             // });
         }
     }

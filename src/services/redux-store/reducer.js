@@ -1,25 +1,23 @@
-import combineReducers from 'redux';
+import { combineReducers } from 'redux';
+import constants from 'codenames-constants';
 
 
 export default combineReducers({
-    seed: seed,
-    player: player,
-    names: names
-});
+    seed,
+    player,
+    names
+})
 
-function names(state, action) {
-    state = state || [];
 
+function names(state = [], action) {
     switch (action.type) {
-        case SETUP_FORM_SUBMIT:
+        case constants.actionTypes.SETUP_FORM_SUBMIT:
             if (!action.seed) {
                 return state;
             }
 
-            Math.seedrandom(action.seed);
-
             return _getInitialNames();
-        case REVEAL_NAME:
+        case constants.actionTypes.REVEAL_NAME:
             return state.map(function(n) {
                 return name(n, action);
             });
@@ -28,11 +26,9 @@ function names(state, action) {
     }
 }
 
-function name(state, action) {
-    state = state || {};
-
+function name(state = {}, action) {
     switch (action.type) {
-        case REVEAL_NAME:
+        case constants.actionTypes.REVEAL_NAME:
             if (action.value !== state.value) {
                 return state;
             }
@@ -45,22 +41,18 @@ function name(state, action) {
     }
 }
 
-function seed(state, action) {
-    state = state || '';
-
+function seed(state = '', action) {
     switch (action.type) {
-        case SEED_CHANGE:
+        case constants.actionTypes.SEED_CHANGE:
             return action.value;
         default:
             return state;
     }
 }
 
-function player(state, action) {
-    state = state || '';
-
+function player(state = '', action) {
     switch (action.type) {
-        case PLAYER_CHANGE:
+        case constants.actionTypes.PLAYER_CHANGE:
             return action.value;
         default:
             return state;
@@ -69,6 +61,8 @@ function player(state, action) {
 
 // utils
 function _getInitialNames() {
+    Math.seedrandom(action.seed);
+
     var shuffledNames = knuthShuffle(NAMES.slice(0)).slice(0, 25),
         shuffledColors = knuthShuffle(COLORS.slice(0));
 

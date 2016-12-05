@@ -1,14 +1,16 @@
 import svelte from 'rollup-plugin-svelte';
-import json from 'rollup-plugin-json';
+import nodeResolve from 'rollup-plugin-node-resolve';
+import nodeGlobals from 'rollup-plugin-node-globals';
 
 
 export default {
-    entry: 'src/codenames.js',
+    entry: 'src/index.js',
     dest: 'dist/bundle.js',
     format: 'iife',
     plugins: [
-        json({
-            exclude: 'node_modules/**'
+        nodeGlobals(),
+        nodeResolve({
+            jsnext: true
         }),
         svelte()
     ],

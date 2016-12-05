@@ -17,9 +17,13 @@
   },
   "homepage": "https://github.com/lukechinworth/codenames#readme",
   "devDependencies": {
+    "codenames-constants": "file:src/services/codenames-constants",
     "knuth-shuffle": "^1.0.1",
     "redux": "^3.6.0",
-    "rollup-plugin-json": "^2.0.2",
+    "redux-store": "file:src/services/redux-store",
+    "rollup-plugin-node-builtins": "^2.0.0",
+    "rollup-plugin-node-globals": "^1.1.0",
+    "rollup-plugin-node-resolve": "^2.0.0",
     "rollup-plugin-svelte": "^1.0.0",
     "seedrandom": "^2.4.2"
   }
