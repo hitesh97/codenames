@@ -1,6 +1,6 @@
 <div id="codenames">
     {{#if names.length }}
-        <Board player={{ player }} />
+        <Board player={{ player }} names={{ names }} />
     {{else}}
         <Setup player={{ player }} />
     {{/if}}

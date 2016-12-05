@@ -1,6 +1,6 @@
 <div id="Board" class="{{ player }}">
-    {{#each names as name}}
-        <Name />
+    {{#each names as nameObj}}
+        <Name name={{ nameObj }} player={{ player }} />
     {{/each}}
 </div>
 
@@ -15,9 +15,7 @@ export default {
 }
 
 </script>
-<!-- key: name.value,
-onClick: gameObj.onNameClick,
-player: gameObj.state.player -->
+
 
 <style>
 

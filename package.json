@@ -21,6 +21,7 @@
     "knuth-shuffle": "^1.0.1",
     "redux": "^3.6.0",
     "redux-store": "file:src/services/redux-store",
+    "rollup-plugin-commonjs": "^5.0.5",
     "rollup-plugin-node-builtins": "^2.0.0",
     "rollup-plugin-node-globals": "^1.1.0",
     "rollup-plugin-node-resolve": "^2.0.0",

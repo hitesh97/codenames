@@ -6,10 +6,7 @@ export default {
         "SPYMASTER" : "spymaster"
     },
     "actionTypes": {
-        "SEED_CHANGE" : "SEED_CHANGE",
-        "PLAYER_CHANGE" : "PLAYER_CHANGE",
         "SETUP_FORM_SUBMIT" : "SETUP_FORM_SUBMIT",
-        "START_GAME" : "START_GAME",
         "REVEAL_NAME" : "REVEAL_NAME"
     }
 }

@@ -1,4 +1,4 @@
-<form id="SetupForm" on:submit="onSetupFormSubmit(event)">
+<form id="SetupForm" on:submit="onSetupFormSubmit(event, this.seed.value, this.player.value)">
     <input id="SetupForm-seed" type="text" name="seed" placeholder="Enter seed to generate board">
     <ul id="SetupForm-player">
         {{#each players as playerOption}}
@@ -13,6 +13,7 @@
 
 import SetupFormInputRadio from './SetupFormInputRadio.html';
 import constants from 'codenames-constants';
+import store from 'redux-store';
 
 
 export default {
@@ -26,14 +27,14 @@ export default {
         SetupFormInputRadio
     },
     methods: {
-
-        onSetupFormSubmit(e) {
+        onSetupFormSubmit(e, seed, player) {
             e.preventDefault();
 
-            // store.dispatch({
-            //     type: SETUP_FORM_SUBMIT,
-            //     seed: store.getState().seed
-            // });
+            store.dispatch({
+                type: constants.actionTypes.SETUP_FORM_SUBMIT,
+                seed,
+                player
+            });
         }
     }
 }

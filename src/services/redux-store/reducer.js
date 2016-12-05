@@ -1,9 +1,10 @@
 import { combineReducers } from 'redux';
 import constants from 'codenames-constants';
+import seedrandom from 'seedrandom';
+import { knuthShuffle } from 'knuth-shuffle';
 
 
 export default combineReducers({
-    seed,
     player,
     names
 })
@@ -16,11 +17,9 @@ function names(state = [], action) {
                 return state;
             }
 
-            return _getInitialNames();
+            return _getInitialNames(action.seed);
         case constants.actionTypes.REVEAL_NAME:
-            return state.map(function(n) {
-                return name(n, action);
-            });
+            return state.map(n => name(n, action));
         default:
             return state;
     }
@@ -41,30 +40,21 @@ function name(state = {}, action) {
     }
 }
 
-function seed(state = '', action) {
-    switch (action.type) {
-        case constants.actionTypes.SEED_CHANGE:
-            return action.value;
-        default:
-            return state;
-    }
-}
-
 function player(state = '', action) {
     switch (action.type) {
-        case constants.actionTypes.PLAYER_CHANGE:
-            return action.value;
+        case constants.actionTypes.SETUP_FORM_SUBMIT:
+            return action.player;
         default:
             return state;
     }
 }
 
 // utils
-function _getInitialNames() {
-    Math.seedrandom(action.seed);
+function _getInitialNames(seed) {
+    seedrandom(seed, {global: true});
 
-    var shuffledNames = knuthShuffle(NAMES.slice(0)).slice(0, 25),
-        shuffledColors = knuthShuffle(COLORS.slice(0));
+    var shuffledNames = knuthShuffle(constants.NAMES.slice(0)).slice(0, 25),
+        shuffledColors = knuthShuffle(constants.COLORS.slice(0));
 
     return shuffledNames.map(function(n, i) {
         return {
