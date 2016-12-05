@@ -1,6 +1,5 @@
 import commonjs from 'rollup-plugin-commonjs';
 import replace from 'rollup-plugin-replace';
-import nodeGlobals from 'rollup-plugin-node-globals';
 import nodeResolve from 'rollup-plugin-node-resolve';
 import svelte from 'rollup-plugin-svelte';
 import buble from 'rollup-plugin-buble';
@@ -16,7 +15,6 @@ let plugins = [
     replace({
         'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     }),
-    nodeGlobals(),
     nodeResolve({
         jsnext: true
     }),
