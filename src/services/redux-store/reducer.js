@@ -51,16 +51,15 @@ function player(state = '', action) {
 
 // utils
 function _getInitialNames(seed) {
+    // side effect for when knuthShuffle calls Math.random
     seedrandom(seed, {global: true});
 
     var shuffledNames = knuthShuffle(constants.NAMES.slice(0)).slice(0, 25),
         shuffledColors = knuthShuffle(constants.COLORS.slice(0));
 
-    return shuffledNames.map(function(n, i) {
-        return {
-            value: n,
-            color: shuffledColors[i],
-            isRevealed: false
-        };
-    })
+    return shuffledNames.map((n, i) => ({
+        value: n,
+        color: shuffledColors[i],
+        isRevealed: false
+    }));
 }

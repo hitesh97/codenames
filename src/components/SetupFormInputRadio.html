@@ -1,7 +1,8 @@
 <li class="SetupFormInputRadio">
-    <input type="radio" id="{{ identifier }}" name="{{ name }}" value="{{ value }}" checked="{{ isChecked }}" on:change="onPlayerChange(this.value)">
+    <input type="radio" id="{{ identifier }}" name="{{ name }}" value="{{ value }}" checked="{{ isChecked }}">
     <label for="{{ identifier }}">{{ label }}</label>
 </li>
+
 
 
 <script>
@@ -11,18 +12,11 @@ export default {
         identifier: value => `form-input-radio-${value}`,
         label: value => value[0].toUpperCase() + value.slice(1),
         isChecked: (value, current) => current === value
-    },
-    methods: {
-        onPlayerChange(e) {
-            // store.dispatch({
-            //     type: PLAYER_CHANGE,
-            //     value: e.target.value
-            // });
-        }
     }
 }
 
 </script>
+
 
 
 <style>
